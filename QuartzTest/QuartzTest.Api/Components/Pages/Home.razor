@@ -1,0 +1,29 @@
+﻿@page "/"
+@using QuartzTest.Application.Common.Interfaces
+@using QuartzTest.Domain.Entities
+@using QuartzApplication.Infrastructure.Services
+
+<PageTitle>Home</PageTitle>
+
+<h1>Users</h1>
+@foreach (var user in _users!)
+{
+    <h2>@user.FirstName</h2>
+    <h2>@user.LastName</h2>
+}
+
+Welcome to your new app.
+
+
+@code
+{
+    private readonly IUserService _userService = new UserService();
+
+    private List<User>? _users;
+    
+    protected override void OnInitialized()
+    {
+        _users = _userService.GetAllUsers();
+    }
+    
+}
